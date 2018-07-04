@@ -1,0 +1,14 @@
+<% if @comment.parent %>
+  <%= render 'comment', comment: @comment.parent, from_reply_form: true %>
+<% end %>
+
+<div id="form-comment">
+  <%= form_for(@comment, remote: true) do |f| %>
+    <div class="field">
+      <%= f.hidden_field :parent_id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.text_area :content, placeholder: "Comment..." %>
+    </div>
+    <%= f.submit "Comment", class: "btn btn-primary" %>
+  <% end %>
+</div>

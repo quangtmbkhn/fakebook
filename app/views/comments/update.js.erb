@@ -1,0 +1,1 @@
+$(".comments-wrapper #comment-<%= @comment.id %>").replaceWith("<%= escape_javascript(render('comments/comment_reload', comment: @comment)) %>");

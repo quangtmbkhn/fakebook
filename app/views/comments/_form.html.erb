@@ -1,0 +1,10 @@
+<div id="form-comment">
+  <%= form_for(@comment, remote: true) do |f| %>
+    <div class="field">
+      <%= f.hidden_field :post_id, value: @post.id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.text_area :content, placeholder: "Comment..." %>
+    </div>
+    <%= f.submit "Comment", class: "btn btn-primary" %>
+  <% end %>
+</div>

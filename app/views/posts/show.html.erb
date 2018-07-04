@@ -1,0 +1,21 @@
+
+ <h3><%= @post.user.name %></h3>
+ <h3><%= @post.title %></h3>
+ <div class="post-content">
+  <%= @post.content %>
+  <%= image_tag @post.picture.url if @post.picture? %>
+</div>
+
+<h3>Comments : </h3>
+<ul class="comments-wrapper">
+  <%= render @comments %>
+</ul>
+<%= will_paginate @comments %>
+
+<% if(logged_in?) %>
+  <% if current_user.following?(@post.user) || current_user?(@post.user) %>
+    <%= render 'comments/form' %>
+  <% end %>
+<% end %>
+
+

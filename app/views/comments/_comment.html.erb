@@ -1,0 +1,33 @@
+<li id="comment-<%= comment.id %>">
+  <h5 class="comment-author"><span>User name:</span><%= comment.user.name %></h5>
+  <h5><span>Post: </span><%= time_ago_in_words(comment.created_at) %> ago.</h5>
+  <div class="comment-content">
+    <span>Comment:</span>
+    <%= comment.content %>
+  </div>
+  <div class="comment-link">
+    <% if(logged_in?) %>
+      <% if current_user.following?(@post.user) || current_user?(@post.user) %>
+     
+      
+      <% end %>
+    <% end %>
+    <% if current_user?(comment.user) %>
+      <%= link_to "edit", 'javascript:void(0)' , class: "edit-comment" %>
+      |
+      <%= link_to "delete", comment, method: :delete, data: { confirm: "You sure?" }, remote: true %>
+    <% end %>
+    <% if current_user == comment.user %>
+    <div id="form-comment-<%= comment.id %>" class="comment-form-update">
+      <%= form_for(comment, remote: true) do |f| %>
+        <div class="field">
+          <%= f.hidden_field :post_id, value: @post.id %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.text_area :content, placeholder: "Comment..." %>
+        </div>
+        <%= f.submit "Comment update", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+</li>
