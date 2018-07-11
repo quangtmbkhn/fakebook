@@ -13,16 +13,16 @@
       <% end %>
     <% end %>
     <% if current_user?(comment.user) %>
-      <%= link_to "edit", 'javascript:void(0)' , class: "edit-comment" %>
+      <%= link_to "edit", "#form-comment-#{comment.id}" , class: "edit-comment", data: {toggle: "collapse"} %>
       |
       <%= link_to "delete", comment, method: :delete, data: { confirm: "You sure?" }, remote: true %>
     <% end %>
     <% if current_user == comment.user %>
-    <div id="form-comment-<%= comment.id %>" class="comment-form-update">
+    <div id="form-comment-<%= comment.id %>" class="comment-form-update collapse">
       <%= form_for(comment, remote: true) do |f| %>
         <div class="field">
           <%= f.hidden_field :post_id, value: @post.id %>
-          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.hidden_field :user_id, value: current_user.posts.build %>
           <%= f.text_area :content, placeholder: "Comment..." %>
         </div>
         <%= f.submit "Comment update", class: "btn btn-primary" %>

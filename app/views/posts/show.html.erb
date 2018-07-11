@@ -1,8 +1,7 @@
-
- <h3><%= @post.user.name %></h3>
- <h3><%= @post.title %></h3>
+<h3>User: <%= @post.user.name %></h3>
+ <h3>Title: <%= @post.title %></h3>
  <div class="post-content">
-  <%= @post.content %>
+  Content: <%= @post.content %>
   <%= image_tag @post.picture.url if @post.picture? %>
 </div>
 

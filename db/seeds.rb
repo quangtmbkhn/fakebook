@@ -13,22 +13,6 @@ User.create!(name:  "ADMIN",
              admin: true,
              activated: true,
              activated_at: Time.zone.now)
-User.create!(name:  "Dzung-2",
-             email: "hvdung15@gmail.com",
-             password:              "hvdung14",
-             password_confirmation: "hvdung14",
-             admin: false,
-             activated: true,
-             activated_at: Time.zone.now)
-
-User.create!(name:  "Dzung-3",
-             email: "hvdung16@gmail.com",
-             password:              "hvdung14",
-             password_confirmation: "hvdung14",
-             admin: false,
-             activated: true,
-             activated_at: Time.zone.now)
-
 
 30.times do |n|
   name  = Faker::Name.name
@@ -44,8 +28,9 @@ User.create!(name:  "Dzung-3",
   
 users = User.order(:created_at).take(6)
 30.times do
+  title = Faker::Lorem.sentence(5)
   content = Faker::Lorem.sentence(5)
-  users.each { |user| user.posts.create!(content: content) }
+  users.each { |user| user.posts.create!(title: title,content: content) }
 end
 
 # Following relationships

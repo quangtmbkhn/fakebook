@@ -16,8 +16,3 @@
 //= require turbolinks
 //= require_tree .
 
-$(document).ready(function(){
-    $(".edit-comment").click(function() {
-        $(this).closest(".comment-link").find('.comment-form-update').toggle();
-    });
-});

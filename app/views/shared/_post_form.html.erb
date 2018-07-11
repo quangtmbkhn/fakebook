@@ -1,7 +1,7 @@
 <%= form_for(@post, html: { multipart: true}) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
-    <%= f.text_field :title, placeholder: "Compose new title..." %>
+    <%= f.text_area :title, placeholder: "Compose new title..." %>
   </div>
   <div class="field">
     <%= f.text_area :content, placeholder: "Compose new post..." %>
